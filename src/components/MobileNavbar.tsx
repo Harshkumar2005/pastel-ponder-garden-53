@@ -38,7 +38,7 @@ const MobileNavbar: React.FC = () => {
           {/*<span className="text-xl mr-1.5">🌸</span>*/}
           <Notebook size={20} className="mr-1.5" />
           
-          <span className="text-m font-medium font-playfair">Home</span>
+          <span className="text-m font-medium ">Home</span>
         </Link>
         
         <motion.button 
@@ -58,7 +58,7 @@ const MobileNavbar: React.FC = () => {
         >
           <Dices size={20} className="mr-1.5" />
           
-          <span className="text-m font-medium font-playfair">Random</span>
+          <span className="text-m font-medium ">Random</span>
         </motion.button>
         
         <Link 
@@ -72,7 +72,7 @@ const MobileNavbar: React.FC = () => {
         >
           <Bookmark size={20} className="mr-1.5" />
           
-          <span className="text-m font-medium font-playfair">Saved</span>
+          <span className="text-m font-medium">Saved</span>
         </Link>
       </div>
     </nav>
