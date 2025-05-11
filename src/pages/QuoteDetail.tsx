@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+
+import React, { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Copy, Download, Heart } from "lucide-react";
+import { Copy, Download, Square } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { quotes } from "@/data/quotes";
 import { copyToClipboard, exportQuoteAsImage } from "@/utils/exportImage";
 import { useToast } from "@/hooks/use-toast";
 import QuoteDesignSelector from "@/components/QuoteDesignSelector";
 import { useIsMobile } from "@/hooks/use-mobile";
+
 const QuoteDetail = () => {
   const {
     id
@@ -18,6 +20,7 @@ const QuoteDetail = () => {
     toast
   } = useToast();
   const isMobile = useIsMobile();
+  const quoteBoxRef = useRef<HTMLDivElement>(null);
 
   // Set minimal design as the default
   const [currentDesign, setCurrentDesign] = useState<string>("minimal");
@@ -39,6 +42,7 @@ const QuoteDetail = () => {
         </div>
       </div>;
   }
+  
   const handleCopy = async () => {
     const success = await copyToClipboard(quote.text);
     if (success) {
@@ -48,13 +52,16 @@ const QuoteDetail = () => {
       });
     }
   };
+  
   const handleDownload = async () => {
-    const success = await exportQuoteAsImage(`quote-detail-${currentDesign}`, `quote-${quote.id}`);
-    if (success) {
-      toast({
-        title: "Downloaded!",
-        description: "Quote image saved"
-      });
+    if (quoteBoxRef.current) {
+      const success = await exportQuoteAsImage(quoteBoxRef.current, `quote-${quote.id}`);
+      if (success) {
+        toast({
+          title: "Downloaded!",
+          description: "Quote image saved"
+        });
+      }
     }
   };
 
@@ -65,23 +72,23 @@ const QuoteDetail = () => {
   return <div className="min-h-screen bg-gray-50">
       <QuoteDesignSelector currentDesign={currentDesign} onDesignChange={setCurrentDesign} />
       
-      <main id="quote-detail-minimal" className="container max-w-3xl mx-auto px-4 py-24 flex flex-col items-center">
-        <div className="w-full mb-16 text-center">
-          <blockquote className="font-playfair text-3xl md:text-4xl lg:text-5xl font-light mb-12 leading-relaxed tracking-wide">
+      <main className="container max-w-3xl mx-auto px-4 py-24 flex flex-col items-center">
+        <div id="quote-box" ref={quoteBoxRef} className={`w-full max-w-lg aspect-square flex flex-col items-center justify-center p-12 ${quote.colorClass} rounded-lg shadow-sm`}>
+          <blockquote className="font-playfair text-3xl md:text-4xl lg:text-5xl font-light mb-8 leading-relaxed tracking-wide text-center">
             {quote?.text}
           </blockquote>
-          
-          <div className="inline-flex gap-3 mt-6">
-            <Button variant="ghost" size="sm" onClick={handleCopy} className="border-0 bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700 bg-stone-100">
-              <Copy className="mr-2 h-4 w-4" /> Copy
-            </Button>
-            <Button variant="ghost" size="sm" onClick={handleDownload} className="bg-[#d3d3d373] border-0 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
-              <Download className="mr-2 h-4 w-4" /> Download
-            </Button>
-          </div>
         </div>
         
-        {quote?.explanation && <div className="w-full max-w-xl mx-auto border-t border-floralwhite pt-10">
+        <div className="w-full flex justify-center gap-3 mt-6">
+          <Button variant="ghost" size="sm" onClick={handleCopy} className="border-0 bg-stone-100 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
+            <Copy className="mr-2 h-4 w-4" /> Copy
+          </Button>
+          <Button variant="ghost" size="sm" onClick={handleDownload} className="bg-stone-100 border-0 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
+            <Download className="mr-2 h-4 w-4" /> Download
+          </Button>
+        </div>
+        
+        {quote?.explanation && <div className="w-full max-w-xl mx-auto border-t border-floralwhite pt-10 mt-10">
             <h2 className="font-inter text-sm uppercase tracking-wider text-gray-400 mb-4 text-center">
               About this quote
             </h2>
@@ -91,7 +98,7 @@ const QuoteDetail = () => {
           </div>}
         
         <div className="mt-16 flex flex-wrap gap-2 justify-center">
-          {quote?.tags.map((tag, index) => <span key={index} className="bg-[#d3d3d373] px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
+          {quote?.tags.map((tag, index) => <span key={index} className="bg-stone-100 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
               #{tag}
             </span>)}
         </div>
