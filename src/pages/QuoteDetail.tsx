@@ -136,17 +136,6 @@ const QuoteDetail = () => {
               >
                 <Download className="mr-2 h-4 w-4" /> Download
               </Button>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={handleBookmarkToggle} 
-                className={`bg-stone-100 border-0 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter ${
-                  bookmarked ? "text-amber-500" : "text-gray-700"
-                }`}
-              >
-                <BookmarkIcon className={`mr-2 h-4 w-4 ${bookmarked ? "fill-current" : ""}`} /> 
-                {bookmarked ? "Saved" : "Save"}
-              </Button>
               
               {/* Tags for desktop only */}
               <div className="hidden md:flex md:flex-wrap md:gap-3">

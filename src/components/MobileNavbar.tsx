@@ -11,7 +11,9 @@ const MobileNavbar: React.FC = () => {
   const location = useLocation();
   
   const isActivePath = (path: string) => {
-    return location.pathname === path;
+    // Check if the pathname includes the path (especially for /quote/ paths)
+    return location.pathname === path || 
+           (path === "/quote/" && location.pathname.includes("/quote/"));
   };
   
   const goToRandomQuote = () => {
@@ -21,14 +23,14 @@ const MobileNavbar: React.FC = () => {
   };
   
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-lg rounded-t-xl px-2 py-1.5 md:hidden z-[1000000]">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-lg rounded-t-xl px-2 py-3 md:hidden z-[1000000]">
       <div className="flex items-center justify-around max-w-md mx-auto">
         <Link 
           to="/" 
           className={cn(
             "flex flex-row items-center justify-center px-3 py-1 rounded-lg transition-all relative",
             isActivePath("/") 
-              ? "text-black border-t-2 border-black" 
+              ? "text-black" 
               : "text-gray-400 grayscale opacity-70"
           )}
         >
@@ -47,7 +49,7 @@ const MobileNavbar: React.FC = () => {
           className={cn(
             "flex flex-row items-center justify-center px-3 py-1 rounded-lg transition-all gap-1.5 relative",
             isActivePath("/quote/") 
-              ? "text-black border-t-2 border-black" 
+              ? "text-black" 
               : "text-gray-400 grayscale opacity-70"
           )}
         >
@@ -60,7 +62,7 @@ const MobileNavbar: React.FC = () => {
           className={cn(
             "flex flex-row items-center justify-center px-3 py-1 rounded-lg transition-all relative",
             isActivePath("/bookmarks") 
-              ? "text-black border-t-2 border-black" 
+              ? "text-black" 
               : "text-gray-400 grayscale opacity-70"
           )}
         >
