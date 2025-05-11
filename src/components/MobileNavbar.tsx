@@ -5,7 +5,7 @@ import { quotes } from "@/data/quotes";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Flower2 } from 'lucide-react';
+import { Notebook, Dices, Bookmark } from 'lucide-react';
 
 const MobileNavbar: React.FC = () => {
   const navigate = useNavigate();
@@ -36,7 +36,8 @@ const MobileNavbar: React.FC = () => {
           )}
         >
           {/*<span className="text-xl mr-1.5">🌸</span>*/}
-          <Flower2 className="mr-1.5" />
+          <Notebook className="mr-1.5" />
+          
           <span className="text-m font-medium">Home</span>
         </Link>
         
@@ -55,8 +56,9 @@ const MobileNavbar: React.FC = () => {
               : "text-gray-400 grayscale opacity-70"
           )}
         >
-          <span className="text-xl">🎲</span>
-          <span className="text-sm font-medium">Random</span>
+          <Dices className="mr-1.5" />
+          
+          <span className="text-m font-medium">Random</span>
         </motion.button>
         
         <Link 
@@ -68,8 +70,9 @@ const MobileNavbar: React.FC = () => {
               : "text-gray-400 grayscale opacity-70"
           )}
         >
-          <span className="text-xl mr-1.5">🔖</span>
-          <span className="text-sm font-medium">Saved</span>
+          <Bookmark className="mr-1.5" />
+          
+          <span className="text-m font-medium">Saved</span>
         </Link>
       </div>
     </nav>
