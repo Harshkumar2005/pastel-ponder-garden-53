@@ -46,16 +46,10 @@ const QuoteCard: React.FC<QuoteCardProps> = ({ quote }) => {
     }
   };
 
-  // Get just the first tag for display
-  const mainTag = quote.tags.length > 0 ? quote.tags[0] : "";
-
-  // Randomize the height a bit to create more visual interest in the bento grid
-  const randomHeight = Math.random() > 0.7 ? "min-h-[240px]" : "min-h-[180px]";
-
   return (
     <div 
       id={`quote-card-${quote.id}`} 
-      className={`${quote.colorClass} rounded-xl p-6 transition-all shadow-sm hover:shadow-md flex flex-col justify-between ${randomHeight} animate-fade-in`}
+      className={`${quote.colorClass} rounded-xl p-6 transition-all shadow-sm hover:shadow-md flex flex-col justify-between h-full animate-fade-in`}
     >
       <Link to={`/quote/${quote.id}`} className="mb-4 flex-grow">
         <p className="font-playfair text-lg md:text-xl font-medium leading-relaxed">
@@ -64,12 +58,12 @@ const QuoteCard: React.FC<QuoteCardProps> = ({ quote }) => {
       </Link>
       
       <div className="mt-auto flex items-center justify-between">
-        <div>
-          {mainTag && (
-            <span className="bg-white/60 px-3 py-1 rounded-full text-sm font-inter text-gray-700">
-              #{mainTag}
+        <div className="flex flex-wrap gap-2">
+          {quote.tags.map((tag, index) => (
+            <span key={index} className="bg-white/60 px-3 py-1 rounded-full text-sm font-inter text-gray-700">
+              #{tag}
             </span>
-          )}
+          ))}
         </div>
         
         <div className="flex gap-2 ml-2">

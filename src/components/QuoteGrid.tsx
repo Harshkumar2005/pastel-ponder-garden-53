@@ -28,11 +28,9 @@ const QuoteGrid: React.FC<QuoteGridProps> = ({ quotes, searchQuery }) => {
   }
 
   return (
-    <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {filteredQuotes.map((quote) => (
-        <div key={quote.id} className="break-inside-avoid mb-6">
-          <QuoteCard quote={quote} />
-        </div>
+        <QuoteCard key={quote.id} quote={quote} />
       ))}
     </div>
   );
