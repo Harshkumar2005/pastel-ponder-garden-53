@@ -56,9 +56,12 @@ const QuoteDetail = () => {
     }
   };
 
+  // Extract the background color class without the 'bg-' prefix
+  const colorName = quote.colorClass.replace('bg-', '');
+
   // Minimal Design - Default
   return (
-    <div className={`min-h-screen ${quote?.colorClass}`}>
+    <div className="min-h-screen bg-gray-50">
       <QuoteDesignSelector currentDesign={currentDesign} onDesignChange={setCurrentDesign} />
       
       <main id="quote-detail-minimal" className="container max-w-3xl mx-auto px-4 py-24 flex flex-col items-center">
@@ -68,10 +71,10 @@ const QuoteDetail = () => {
           </blockquote>
           
           <div className="inline-flex gap-3 mt-6">
-            <Button variant="ghost" size="sm" onClick={handleCopy} className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700 border-0 hover:bg-white/50">
+            <Button variant="ghost" size="sm" onClick={handleCopy} className={`${quote.colorClass} border-0 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700`}>
               <Copy className="mr-2 h-4 w-4" /> Copy
             </Button>
-            <Button variant="ghost" size="sm" onClick={handleDownload} className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700 border-0 hover:bg-white/50">
+            <Button variant="ghost" size="sm" onClick={handleDownload} className={`${quote.colorClass} border-0 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700`}>
               <Download className="mr-2 h-4 w-4" /> Download
             </Button>
           </div>
@@ -87,7 +90,7 @@ const QuoteDetail = () => {
           </div>}
         
         <div className="mt-16 flex flex-wrap gap-2 justify-center">
-          {quote?.tags.map((tag, index) => <span key={index} className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
+          {quote?.tags.map((tag, index) => <span key={index} className={`${quote.colorClass} px-4 py-1.5 rounded-full text-sm font-inter text-gray-700`}>
               #{tag}
             </span>)}
         </div>
