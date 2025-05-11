@@ -21,17 +21,16 @@ const MobileNavbar: React.FC = () => {
   };
   
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-lg rounded-t-xl px-2 py-1 md:hidden z-10">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-lg rounded-t-xl px-2 py-0.5 md:hidden z-10">
       <div className="flex items-center justify-around max-w-md mx-auto">
         <Link 
           to="/" 
           className={cn(
-            "flex flex-col items-center justify-center px-3 py-1.5 rounded-lg transition-colors", 
-            isActivePath("/") ? "text-black font-medium" : "text-gray-600"
+            "flex flex-col items-center justify-center px-3 py-1 rounded-lg transition-all", 
+            isActivePath("/") ? "text-black" : "text-gray-400 grayscale opacity-70"
           )}
         >
           <span className="text-xl">🌸</span>
-          <span className="text-xs mt-1">Home</span>
         </Link>
         
         <motion.button 
@@ -42,21 +41,20 @@ const MobileNavbar: React.FC = () => {
           whileHover={{
             scale: 1.03
           }} 
-          className="flex flex-row items-center justify-center px-3 py-1.5 rounded-lg transition-colors gap-2"
+          className="flex flex-row items-center justify-center px-3 py-1 rounded-lg transition-colors gap-1"
         >
           <span className="text-xl">🎲</span>
-          <span className="text-xs font-medium">Random</span>
+          <span className="text-sm font-medium">Random</span>
         </motion.button>
         
         <Link 
           to="/bookmarks" 
           className={cn(
-            "flex flex-col items-center justify-center px-3 py-1.5 rounded-lg transition-colors", 
-            isActivePath("/bookmarks") ? "text-black font-medium" : "text-gray-600"
+            "flex flex-col items-center justify-center px-3 py-1 rounded-lg transition-all", 
+            isActivePath("/bookmarks") ? "text-black" : "text-gray-400 grayscale opacity-70"
           )}
         >
           <span className="text-xl">🔖</span>
-          <span className="text-xs mt-1">Saved</span>
         </Link>
       </div>
     </nav>
