@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Copy, Download } from "lucide-react";
@@ -7,16 +8,12 @@ import { copyToClipboard, exportQuoteAsImage } from "@/utils/exportImage";
 import { useToast } from "@/hooks/use-toast";
 import QuoteDesignSelector from "@/components/QuoteDesignSelector";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Badge } from "@/components/ui/badge";
+
 const QuoteDetail = () => {
-  const {
-    id
-  } = useParams<{
-    id: string;
-  }>();
+  const { id } = useParams<{ id: string; }>();
   const navigate = useNavigate();
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const isMobile = useIsMobile();
   const quoteBoxRef = useRef<HTMLDivElement>(null);
 
@@ -40,6 +37,7 @@ const QuoteDetail = () => {
         </div>
       </div>;
   }
+  
   const handleCopy = async () => {
     const success = await copyToClipboard(quote.text);
     if (success) {
@@ -49,6 +47,7 @@ const QuoteDetail = () => {
       });
     }
   };
+  
   const handleDownload = async () => {
     if (quoteBoxRef.current) {
       const success = await exportQuoteAsImage(quoteBoxRef.current, `quote-${quote.id}`);
@@ -79,17 +78,24 @@ const QuoteDetail = () => {
               </blockquote>
             </div>
             
-            <div className="w-full flex justify-center md:justify-center gap-3 mt-6">
+            <div className="w-full flex flex-wrap items-center justify-center md:justify-start gap-3 mt-6">
               <Button variant="ghost" size="sm" onClick={handleCopy} className="border-0 bg-stone-100 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
                 <Copy className="mr-2 h-4 w-4" /> Copy
               </Button>
               <Button variant="ghost" size="sm" onClick={handleDownload} className="bg-stone-100 border-0 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
                 <Download className="mr-2 h-4 w-4" /> Download
               </Button>
+              
+              {/* Tags moved here - next to buttons */}
+              {quote?.tags.map((tag, index) => (
+                <span key={index} className="bg-stone-100 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
+                  #{tag}
+                </span>
+              ))}
             </div>
           </div>
           
-          {/* Right column: About and tags */}
+          {/* Right column: About and tags (tags moved from here) */}
           <div className="md:flex-1 md:pt-0 md:border-t-0">
             {quote?.explanation && <div className="w-full max-w-xl mx-auto border-t md:border-t-0 pt-10 mt-10 md:mt-0 md:pt-0">
                 <h2 className="font-inter text-sm uppercase tracking-wider text-gray-400 mb-4 text-center md:text-left">
@@ -99,15 +105,10 @@ const QuoteDetail = () => {
                   {quote.explanation}
                 </p>
               </div>}
-            
-            <div className="mt-16 md:mt-10 flex flex-wrap gap-2 justify-center md:justify-start">
-              {quote?.tags.map((tag, index) => <span key={index} className="bg-stone-100 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
-                  #{tag}
-                </span>)}
-            </div>
           </div>
         </div>
       </main>
     </div>;
 };
+
 export default QuoteDetail;
