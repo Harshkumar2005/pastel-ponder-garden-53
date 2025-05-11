@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Copy, Download, Heart } from "lucide-react";
@@ -15,7 +14,7 @@ const QuoteDetail = () => {
   const { toast } = useToast();
   const isMobile = useIsMobile();
   
-  const [currentDesign, setCurrentDesign] = useState<string>("classic");
+  const [currentDesign, setCurrentDesign] = useState<string>("minimal");
 
   // Find the quote by id
   const quote = quotes.find((q) => q.id === Number(id));
@@ -210,7 +209,7 @@ const QuoteDetail = () => {
 
   // Minimal Design
   const renderMinimalDesign = () => (
-    <div className="min-h-screen bg-white">
+    <div className={`min-h-screen ${quote?.colorClass}`}>
       <QuoteDesignSelector 
         currentDesign={currentDesign}
         onDesignChange={setCurrentDesign}
@@ -228,20 +227,20 @@ const QuoteDetail = () => {
       <main id="quote-detail-minimal" className="container max-w-3xl mx-auto px-4 py-24 flex flex-col items-center">
         <div className="w-full mb-16 text-center">
           <blockquote className="font-playfair text-3xl md:text-4xl lg:text-5xl font-light mb-12 leading-relaxed tracking-wide">
-            {quote.text}
+            {quote?.text}
           </blockquote>
           
           <div className="inline-flex gap-3 mt-6">
-            <Button variant="outline" size="sm" onClick={handleCopy} className="font-inter border-gray-300">
+            <Button variant="outline" size="sm" onClick={handleCopy} className="font-inter border-gray-300 bg-white/50 backdrop-blur-sm">
               <Copy className="mr-2 h-4 w-4" /> Copy
             </Button>
-            <Button variant="outline" size="sm" onClick={handleDownload} className="font-inter border-gray-300">
+            <Button variant="outline" size="sm" onClick={handleDownload} className="font-inter border-gray-300 bg-white/50 backdrop-blur-sm">
               <Download className="mr-2 h-4 w-4" /> Download
             </Button>
           </div>
         </div>
         
-        {quote.explanation && (
+        {quote?.explanation && (
           <div className="w-full max-w-xl mx-auto border-t border-gray-100 pt-10">
             <h2 className="font-inter text-sm uppercase tracking-wider text-gray-400 mb-4 text-center">
               About this quote
@@ -253,10 +252,10 @@ const QuoteDetail = () => {
         )}
         
         <div className="mt-16 flex flex-wrap gap-2 justify-center">
-          {quote.tags.map((tag, index) => (
+          {quote?.tags.map((tag, index) => (
             <span
               key={index}
-              className="bg-gray-50 px-4 py-1.5 rounded-full text-sm font-inter text-gray-600"
+              className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700"
             >
               #{tag}
             </span>
