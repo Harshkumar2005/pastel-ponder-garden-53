@@ -14,6 +14,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const queryClient = new QueryClient();
 
 const App = () => (
+   const isMobile = useIsMobile();
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
