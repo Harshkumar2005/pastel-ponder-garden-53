@@ -1,12 +1,36 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState } from "react";
+import Navbar from "@/components/Navbar";
+import QuoteGrid from "@/components/QuoteGrid";
+import { quotes } from "@/data/quotes";
 
 const Index = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      <Navbar onSearch={setSearchQuery} />
+      
+      <main className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+        <header className="text-center mb-10">
+          <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-4">
+            Quotes
+          </h1>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            A collection of inspiring quotes to motivate and uplift your day.
+          </p>
+        </header>
+        
+        <QuoteGrid quotes={quotes} searchQuery={searchQuery} />
+      </main>
+      
+      <footer className="py-8 border-t mt-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <p className="text-center text-gray-500">
+            &copy; {new Date().getFullYear()} Inspirational Quotes
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
