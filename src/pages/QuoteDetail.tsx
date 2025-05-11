@@ -7,23 +7,27 @@ import { copyToClipboard, exportQuoteAsImage } from "@/utils/exportImage";
 import { useToast } from "@/hooks/use-toast";
 import QuoteDesignSelector from "@/components/QuoteDesignSelector";
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const QuoteDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  const {
+    id
+  } = useParams<{
+    id: string;
+  }>();
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const isMobile = useIsMobile();
-  
+
   // Set minimal design as the default
   const [currentDesign, setCurrentDesign] = useState<string>("minimal");
 
   // Find the quote by id
-  const quote = quotes.find((q) => q.id === Number(id));
+  const quote = quotes.find(q => q.id === Number(id));
 
   // Handle when quote is not found
   if (!quote) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+    return <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center p-6 max-w-md">
           <h1 className="font-playfair text-2xl font-semibold mb-4">Quote not found</h1>
           <p className="text-gray-600 mb-6">
@@ -33,65 +37,47 @@ const QuoteDetail = () => {
             Go back to all quotes
           </Button>
         </div>
-      </div>
-    );
+      </div>;
   }
-
   const handleCopy = async () => {
     const success = await copyToClipboard(quote.text);
     if (success) {
       toast({
         title: "Copied!",
-        description: "Quote copied to clipboard",
+        description: "Quote copied to clipboard"
       });
     }
   };
-
   const handleDownload = async () => {
     const success = await exportQuoteAsImage(`quote-detail-${currentDesign}`, `quote-${quote.id}`);
     if (success) {
       toast({
         title: "Downloaded!",
-        description: "Quote image saved",
+        description: "Quote image saved"
       });
     }
   };
 
   // Classic Design
-  const renderClassicDesign = () => (
-    <div className="min-h-screen bg-gray-50">
-      <QuoteDesignSelector 
-        currentDesign={currentDesign}
-        onDesignChange={setCurrentDesign}
-      />
+  const renderClassicDesign = () => <div className="min-h-screen bg-gray-50">
+      <QuoteDesignSelector currentDesign={currentDesign} onDesignChange={setCurrentDesign} />
       
       <main className="max-w-4xl mx-auto py-10 px-4">
         <div className="mb-6">
-          <Link
-            to="/"
-            className="inline-flex items-center text-gray-600 hover:text-gray-900 font-inter"
-          >
+          <Link to="/" className="inline-flex items-center text-gray-600 hover:text-gray-900 font-inter">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to all quotes
           </Link>
         </div>
 
-        <div 
-          id="quote-detail-classic"
-          className={`${quote.colorClass} rounded-2xl p-8 md:p-10 shadow-sm mb-8 max-w-2xl mx-auto`}
-        >
+        <div id="quote-detail-classic" className={`${quote.colorClass} rounded-2xl p-8 md:p-10 shadow-sm mb-8 max-w-2xl mx-auto`}>
           <blockquote className="font-playfair text-2xl md:text-3xl font-medium mb-6 leading-relaxed">
             {quote.text}
           </blockquote>
 
           <div className="flex flex-wrap gap-2 mb-6">
-            {quote.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="bg-white/60 px-3 py-1 rounded-full text-sm font-inter text-gray-700"
-              >
+            {quote.tags.map((tag, index) => <span key={index} className="bg-white/60 px-3 py-1 rounded-full text-sm font-inter text-gray-700">
                 #{tag}
-              </span>
-            ))}
+              </span>)}
           </div>
 
           <div className="flex justify-end gap-3">
@@ -104,58 +90,37 @@ const QuoteDetail = () => {
           </div>
         </div>
 
-        {quote.explanation && (
-          <div className="max-w-2xl mx-auto bg-white rounded-xl p-6 shadow-sm">
+        {quote.explanation && <div className="max-w-2xl mx-auto bg-white rounded-xl p-6 shadow-sm">
             <h2 className="font-playfair text-xl font-semibold mb-4">
               What does this quote mean?
             </h2>
             <p className="text-gray-700 leading-relaxed font-inter">
               {quote.explanation}
             </p>
-          </div>
-        )}
+          </div>}
       </main>
-    </div>
-  );
+    </div>;
 
   // Modern Design
-  const renderModernDesign = () => (
-    <div className="min-h-screen bg-gradient-to-br from-white to-gray-100">
-      <QuoteDesignSelector 
-        currentDesign={currentDesign}
-        onDesignChange={setCurrentDesign}
-      />
+  const renderModernDesign = () => <div className="min-h-screen bg-gradient-to-br from-white to-gray-100">
+      <QuoteDesignSelector currentDesign={currentDesign} onDesignChange={setCurrentDesign} />
       
       <header className="pt-8 pb-4 px-4">
         <div className="max-w-5xl mx-auto">
-          <Link
-            to="/"
-            className="inline-flex items-center text-gray-600 hover:text-gray-900 font-inter rounded-full bg-white/80 backdrop-blur-sm px-4 py-2 shadow-sm"
-          >
+          <Link to="/" className="inline-flex items-center text-gray-600 hover:text-gray-900 font-inter rounded-full bg-white/80 backdrop-blur-sm px-4 py-2 shadow-sm">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Link>
         </div>
       </header>
       
       <main className="px-4 pb-12">
-        <div 
-          id="quote-detail-modern"
-          className="max-w-5xl mx-auto bg-white rounded-3xl shadow-lg overflow-hidden flex flex-col lg:flex-row"
-        >
+        <div id="quote-detail-modern" className="max-w-5xl mx-auto bg-white rounded-3xl shadow-lg overflow-hidden flex flex-col lg:flex-row">
           <div className={`${quote.colorClass} p-8 md:p-12 lg:w-3/5 relative`}>
             <div className="absolute top-6 right-6 flex gap-2">
-              <button 
-                onClick={handleCopy} 
-                className="rounded-full p-2 bg-white/20 backdrop-blur-sm hover:bg-white/40 transition-colors"
-                title="Copy to clipboard"
-              >
+              <button onClick={handleCopy} className="rounded-full p-2 bg-white/20 backdrop-blur-sm hover:bg-white/40 transition-colors" title="Copy to clipboard">
                 <Copy className="h-5 w-5 text-gray-700" />
               </button>
-              <button 
-                onClick={handleDownload} 
-                className="rounded-full p-2 bg-white/20 backdrop-blur-sm hover:bg-white/40 transition-colors"
-                title="Download as image"
-              >
+              <button onClick={handleDownload} className="rounded-full p-2 bg-white/20 backdrop-blur-sm hover:bg-white/40 transition-colors" title="Download as image">
                 <Download className="h-5 w-5 text-gray-700" />
               </button>
             </div>
@@ -167,14 +132,9 @@ const QuoteDetail = () => {
             </blockquote>
             
             <div className="flex flex-wrap gap-2 mt-auto">
-              {quote.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-800"
-                >
+              {quote.tags.map((tag, index) => <span key={index} className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-800">
                   #{tag}
-                </span>
-              ))}
+                </span>)}
             </div>
           </div>
           
@@ -183,38 +143,26 @@ const QuoteDetail = () => {
               <h2 className="font-playfair text-2xl font-bold mb-4 text-gray-900">
                 About this quote
               </h2>
-              {quote.explanation ? (
-                <p className="text-gray-700 leading-relaxed font-inter">
+              {quote.explanation ? <p className="text-gray-700 leading-relaxed font-inter">
                   {quote.explanation}
-                </p>
-              ) : (
-                <p className="text-gray-500 italic font-inter">
+                </p> : <p className="text-gray-500 italic font-inter">
                   No additional information available for this quote.
-                </p>
-              )}
+                </p>}
             </div>
             
             <div className="mt-8">
-              <Button 
-                size="lg" 
-                className="w-full rounded-xl bg-gradient-to-r from-pastel-blue to-pastel-lavender hover:opacity-90 font-inter"
-              >
+              <Button size="lg" className="w-full rounded-xl bg-gradient-to-r from-pastel-blue to-pastel-lavender hover:opacity-90 font-inter">
                 <Heart className="mr-2 h-4 w-4" /> Add to Favorites
               </Button>
             </div>
           </div>
         </div>
       </main>
-    </div>
-  );
+    </div>;
 
   // Minimal Design - Updated
-  const renderMinimalDesign = () => (
-    <div className={`min-h-screen ${quote?.colorClass}`}>
-      <QuoteDesignSelector 
-        currentDesign={currentDesign}
-        onDesignChange={setCurrentDesign}
-      />
+  const renderMinimalDesign = () => <div className={`min-h-screen ${quote?.colorClass}`}>
+      <QuoteDesignSelector currentDesign={currentDesign} onDesignChange={setCurrentDesign} />
       
       <main id="quote-detail-minimal" className="container max-w-3xl mx-auto px-4 py-24 flex flex-col items-center">
         <div className="w-full mb-16 text-center">
@@ -223,52 +171,33 @@ const QuoteDetail = () => {
           </blockquote>
           
           <div className="inline-flex gap-3 mt-6">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={handleCopy} 
-              className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700 border-0 hover:bg-white/50"
-            >
+            <Button variant="ghost" size="sm" onClick={handleCopy} className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700 border-0 hover:bg-white/50">
               <Copy className="mr-2 h-4 w-4" /> Copy
             </Button>
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={handleDownload} 
-              className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700 border-0 hover:bg-white/50"
-            >
+            <Button variant="ghost" size="sm" onClick={handleDownload} className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700 border-0 hover:bg-white/50">
               <Download className="mr-2 h-4 w-4" /> Download
             </Button>
           </div>
         </div>
         
-        {quote?.explanation && (
-          <div className="w-full max-w-xl mx-auto border-t border-white/30 pt-10">
+        {quote?.explanation && <div className="w-full max-w-xl mx-auto border-t border-black/30 pt-10">
             <h2 className="font-inter text-sm uppercase tracking-wider text-gray-400 mb-4 text-center">
               About this quote
             </h2>
             <p className="text-gray-700 text-center leading-relaxed font-inter">
               {quote.explanation}
             </p>
-          </div>
-        )}
+          </div>}
         
         <div className="mt-16 flex flex-wrap gap-2 justify-center">
-          {quote?.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700"
-            >
+          {quote?.tags.map((tag, index) => <span key={index} className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
               #{tag}
-            </span>
-          ))}
+            </span>)}
         </div>
       </main>
-    </div>
-  );
+    </div>;
 
   // Always render the minimal design regardless of the currentDesign value
   return renderMinimalDesign();
 };
-
 export default QuoteDetail;
