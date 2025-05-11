@@ -68,7 +68,7 @@ const QuoteDetail = () => {
   return <div className="min-h-screen bg-gray-50">
       <QuoteDesignSelector currentDesign={currentDesign} onDesignChange={setCurrentDesign} />
       
-      <main className="container max-w-5xl mx-auto px-4 py-8 md:py-24">
+      <main className="container max-w-5xl mx-auto px-4 py-8 md:py-16">
         {/* Desktop: Side by side layout, Mobile: Stacked layout */}
         <div className="flex flex-col md:flex-row md:gap-12">
           {/* Left column: Quote and buttons */}
