@@ -5,6 +5,7 @@ import { quotes } from "@/data/quotes";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Flower } from 'lucide-react';
 
 const MobileNavbar: React.FC = () => {
   const navigate = useNavigate();
@@ -34,7 +35,8 @@ const MobileNavbar: React.FC = () => {
               : "text-gray-400 grayscale opacity-70"
           )}
         >
-          <span className="text-xl mr-1.5">🌸</span>
+          {/*<span className="text-xl mr-1.5">🌸</span>*/}
+          <Flower />
           <span className="text-sm font-medium">Home</span>
         </Link>
         
