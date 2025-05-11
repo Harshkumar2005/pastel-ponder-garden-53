@@ -72,7 +72,7 @@ const QuoteDetail = () => {
           </blockquote>
           
           <div className="inline-flex gap-3 mt-6">
-            <Button variant="ghost" size="sm" onClick={handleCopy} className="bg-[#d3d3d373] border-0 bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
+            <Button variant="ghost" size="sm" onClick={handleCopy} className="border-0 bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700 bg-stone-100">
               <Copy className="mr-2 h-4 w-4" /> Copy
             </Button>
             <Button variant="ghost" size="sm" onClick={handleDownload} className="bg-[#d3d3d373] border-0 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
