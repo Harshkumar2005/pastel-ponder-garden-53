@@ -36,8 +36,8 @@ const MobileNavbar: React.FC = () => {
           )}
         >
           {/*<span className="text-xl mr-1.5">🌸</span>*/}
-          <Flower />
-          <span className="text-sm font-medium">Home</span>
+          <Flower className="mr-1.5" />
+          <span className="text-m font-medium">Home</span>
         </Link>
         
         <motion.button 
