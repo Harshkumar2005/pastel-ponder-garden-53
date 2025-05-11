@@ -7,6 +7,19 @@
 }
 
 export const quotes: Quote[] = [
+  
+];
+*/
+
+export interface Quote {
+  id: number;
+  text: string;
+  tags: string[];
+  explanation?: string;
+  colorClass: string;
+}
+
+export const quotes: Quote[] = [
   {
     id: 1,
     text: "The only limit to our realization of tomorrow is our doubts of today.",
@@ -90,20 +103,7 @@ export const quotes: Quote[] = [
     tags: ["inspiration", "motivation"],
     explanation: "Rather than passively waiting for circumstances to change, this quote empowers us to be active architects of our own destiny through intentional action and vision.",
     colorClass: "bg-pastel-yellow"
-  }
-];
-*/
-
-export interface Quote {
-  id: number;
-  text: string;
-  tags: string[];
-  explanation?: string;
-  colorClass: string;
-}
-
-export const quotes: Quote[] = [
-  [
+  },
   {
     id: 13,
     text: "The journey of a thousand miles begins with a single step.",
