@@ -148,10 +148,10 @@ const QuoteDetail = () => {
           <div className="md:flex-1 md:pt-0 md:border-t-0">
             {quote?.explanation && (
               <div className="w-full max-w-xl mx-auto border-t md:border-t-0 pt-10 mt-10 md:mt-0 md:pt-0">
-                <h2 className="font-inter text-sm uppercase tracking-wider text-gray-400 mb-4 text-center md:text-left">
+                <h2 className="font-inter text-sm uppercase tracking-wider text-gray-400 mb-4 text-left md:text-left">
                   About this quote
                 </h2>
-                <p className="text-gray-700 text-center md:text-left leading-relaxed font-inter">
+                <p className="text-gray-700 text-left md:text-left leading-relaxed font-inter">
                   {quote.explanation}
                 </p>
                 
