@@ -57,8 +57,8 @@ const QuoteCard: React.FC<QuoteCardProps> = ({ quote }) => {
         </p>
       </Link>
       
-      <div className="mt-auto">
-        <div className="flex flex-wrap gap-2 mb-4">
+      <div className="mt-auto flex items-center justify-between">
+        <div className="flex flex-wrap gap-2">
           {quote.tags.map((tag, index) => (
             <span key={index} className="bg-white/60 px-3 py-1 rounded-full text-sm font-inter text-gray-700">
               #{tag}
@@ -66,7 +66,7 @@ const QuoteCard: React.FC<QuoteCardProps> = ({ quote }) => {
           ))}
         </div>
         
-        <div className="flex justify-end gap-2">
+        <div className="flex gap-2 ml-2">
           <Button variant="ghost" size="icon" onClick={handleCopy} title="Copy to clipboard">
             <Copy size={18} />
           </Button>
