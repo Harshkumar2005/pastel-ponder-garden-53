@@ -65,7 +65,7 @@ const QuoteGrid: React.FC<QuoteGridProps> = ({
     setMoodFilter('all');
     setFavoritesOnly(false);
   };
-  const renderFilterBar = () => <div className="filter-bar bg-white/70 backdrop-blur-sm rounded-lg shadow-sm border border-gray-100 mb-8 animate-fade-in">
+  const renderFilterBar = () => <div className="filter-bar bg-white/70 rounded-lg mb-8 animate-fade-in">
       <div className="flex flex-col sm:flex-row justify-between gap-4">
         {/* Left side - Search */}
         <div className="relative flex-grow max-w-2xl">
