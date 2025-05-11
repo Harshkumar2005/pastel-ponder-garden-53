@@ -5,7 +5,7 @@ import { quotes } from "@/data/quotes";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Flower } from 'lucide-react';
+import { Flower2 } from 'lucide-react';
 
 const MobileNavbar: React.FC = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const MobileNavbar: React.FC = () => {
           )}
         >
           {/*<span className="text-xl mr-1.5">🌸</span>*/}
-          <Flower className="mr-1.5" />
+          <Flower2 className="mr-1.5" />
           <span className="text-m font-medium">Home</span>
         </Link>
         
