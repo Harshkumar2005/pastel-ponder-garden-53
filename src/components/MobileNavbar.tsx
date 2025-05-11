@@ -17,7 +17,7 @@ const MobileNavbar: React.FC = () => {
     navigate(`/quote/${randomQuote.id}`);
   };
   return <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-lg rounded-t-xl px-2 py-1 md:hidden z-10">
-      <div className="flex items-center justify-between max-w-md mx-auto">
+      <div className="flex items-center justify-around max-w-md mx-auto">
         <Link to="/" className={cn("flex flex-col items-center justify-center px-3 py-1.5 rounded-lg transition-colors", isActivePath("/") ? "text-black font-medium" : "text-gray-600")}>
           <Flower2 className={cn("h-5 w-5 transition-colors", isActivePath("/") ? "text-black" : "")} />
           <span className="text-xs mt-1">Home</span>
