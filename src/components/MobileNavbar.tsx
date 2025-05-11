@@ -5,7 +5,7 @@ import { quotes } from "@/data/quotes";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Notebook, Dices, Bookmark } from 'lucide-react';
+import { Notebook, Dices, Bookmark, PencilLine } from 'lucide-react';
 
 const MobileNavbar: React.FC = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const MobileNavbar: React.FC = () => {
           )}
         >
           {/*<span className="text-xl mr-1.5">🌸</span>*/}
-          <Notebook size={20} className="mr-1.5" />
+          <PencilLine size={20} className="mr-1.5" />
           
           <span className="text-m font-medium ">Home</span>
         </Link>
