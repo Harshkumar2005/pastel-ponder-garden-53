@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import QuoteDetail from "./pages/QuoteDetail";
 import NotFound from "./pages/NotFound";
+import BookmarkedQuotes from "./pages/BookmarkedQuotes";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/quote/:id" element={<QuoteDetail />} />
+          <Route path="/bookmarks" element={<BookmarkedQuotes />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

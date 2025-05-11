@@ -1,7 +1,7 @@
 
 import React, { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Copy, Download } from "lucide-react";
+import { Copy, Download, BookmarkIcon, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { quotes } from "@/data/quotes";
 import { copyToClipboard, exportQuoteAsImage } from "@/utils/exportImage";
@@ -9,6 +9,8 @@ import { useToast } from "@/hooks/use-toast";
 import QuoteDesignSelector from "@/components/QuoteDesignSelector";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Badge } from "@/components/ui/badge";
+import { useBookmark } from "@/hooks/use-bookmark";
+import MobileNavbar from "@/components/MobileNavbar";
 
 const QuoteDetail = () => {
   const { id } = useParams<{ id: string; }>();
@@ -16,6 +18,7 @@ const QuoteDetail = () => {
   const { toast } = useToast();
   const isMobile = useIsMobile();
   const quoteBoxRef = useRef<HTMLDivElement>(null);
+  const { isBookmarked, toggleBookmark } = useBookmark();
 
   // Set minimal design as the default
   const [currentDesign, setCurrentDesign] = useState<string>("minimal");
@@ -37,6 +40,8 @@ const QuoteDetail = () => {
         </div>
       </div>;
   }
+
+  const bookmarked = isBookmarked(quote.id);
 
   const handleCopy = async () => {
     const success = await copyToClipboard(quote.text);
@@ -60,6 +65,15 @@ const QuoteDetail = () => {
     }
   };
 
+  const handleBookmarkToggle = () => {
+    toggleBookmark(quote.id);
+    
+    toast({
+      title: bookmarked ? "Removed from bookmarks" : "Added to bookmarks",
+      description: bookmarked ? "Quote removed from your saved items" : "Quote saved to your bookmarks",
+    });
+  };
+
   // Extract the background color class without the 'bg-' prefix
   const colorName = quote.colorClass.replace('bg-', '');
 
@@ -76,7 +90,7 @@ const QuoteDetail = () => {
 
   // Minimal Design - Default
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-16 md:pb-0">
       <QuoteDesignSelector currentDesign={currentDesign} onDesignChange={setCurrentDesign} />
       
       <main className="container max-w-5xl mx-auto px-4 py-8 md:py-14">
@@ -87,11 +101,22 @@ const QuoteDetail = () => {
             <div 
               id="quote-box" 
               ref={quoteBoxRef} 
-              className={`w-full max-w-lg aspect-square flex flex-col items-center justify-center p-12 ${quote.colorClass} rounded-lg shadow-sm`}
+              className={`relative w-full max-w-lg aspect-square flex flex-col items-center justify-center p-12 ${quote.colorClass} rounded-lg shadow-sm`}
             >
               <blockquote className="font-playfair text-3xl md:text-4xl lg:text-5xl font-light mb-8 leading-relaxed tracking-wide text-center">
                 {quote?.text}
               </blockquote>
+              
+              {/* Bookmark icon positioned inside the quote box */}
+              <button 
+                onClick={handleBookmarkToggle}
+                className={`absolute bottom-4 right-4 rounded-full p-2 bg-white/40 backdrop-blur-sm transition-all ${
+                  bookmarked ? "text-amber-500" : "text-gray-700"
+                } hover:bg-white/60`}
+                aria-label={bookmarked ? "Remove from bookmarks" : "Add to bookmarks"}
+              >
+                <BookmarkIcon size={18} className={bookmarked ? "fill-current" : ""} />
+              </button>
             </div>
             
             <div className="w-full flex flex-wrap items-center justify-center gap-3 mt-6">
@@ -110,6 +135,17 @@ const QuoteDetail = () => {
                 className="bg-stone-100 border-0 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700"
               >
                 <Download className="mr-2 h-4 w-4" /> Download
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={handleBookmarkToggle} 
+                className={`bg-stone-100 border-0 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter ${
+                  bookmarked ? "text-amber-500" : "text-gray-700"
+                }`}
+              >
+                <BookmarkIcon className={`mr-2 h-4 w-4 ${bookmarked ? "fill-current" : ""}`} /> 
+                {bookmarked ? "Saved" : "Save"}
               </Button>
               
               {/* Tags for desktop only */}
@@ -139,6 +175,9 @@ const QuoteDetail = () => {
           </div>
         </div>
       </main>
+      
+      {/* Mobile bottom navbar */}
+      {isMobile && <MobileNavbar />}
     </div>
   );
 };

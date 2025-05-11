@@ -1,10 +1,17 @@
+
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import QuoteGrid from "@/components/QuoteGrid";
 import { quotes } from "@/data/quotes";
+import { useIsMobile } from "@/hooks/use-mobile";
+import MobileNavbar from "@/components/MobileNavbar";
+
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  return <div className="min-h-screen bg-gray-50">
+  const isMobile = useIsMobile();
+  
+  return (
+    <div className="min-h-screen bg-gray-50 pb-16 md:pb-0">
       <Navbar onSearch={setSearchQuery} />
       
       <main className="max-w-7xl mx-auto px-4 py-8 md:py-12">
@@ -20,6 +27,8 @@ const Index = () => {
         <QuoteGrid quotes={quotes} searchQuery={searchQuery} />
       </main>
       
+      {isMobile && <MobileNavbar />}
+      
       <footer className="py-8 border-t mt-12 bg-white hidden">
         <div className="max-w-7xl mx-auto px-4">
           <p className="text-center text-gray-500">
@@ -27,6 +36,8 @@ const Index = () => {
           </p>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;

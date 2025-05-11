@@ -1,11 +1,12 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Copy, Download } from "lucide-react";
+import { Copy, Download, BookmarkIcon } from "lucide-react";
 import { Quote } from "@/data/quotes";
 import { Button } from "@/components/ui/button";
 import { copyToClipboard, exportQuoteAsImage } from "@/utils/exportImage";
 import { useToast } from "@/hooks/use-toast";
+import { useBookmark } from "@/hooks/use-bookmark";
 
 interface QuoteCardProps {
   quote: Quote;
@@ -13,6 +14,8 @@ interface QuoteCardProps {
 
 const QuoteCard: React.FC<QuoteCardProps> = ({ quote }) => {
   const { toast } = useToast();
+  const { isBookmarked, toggleBookmark } = useBookmark();
+  const bookmarked = isBookmarked(quote.id);
 
   const handleCopy = async () => {
     const success = await copyToClipboard(quote.text);
@@ -31,19 +34,33 @@ const QuoteCard: React.FC<QuoteCardProps> = ({ quote }) => {
   };
 
   const handleDownload = async () => {
-    const success = await exportQuoteAsImage(`quote-card-${quote.id}`, `quote-${quote.id}`);
-    if (success) {
-      toast({
-        title: "Downloaded!",
-        description: "Quote image saved",
-      });
-    } else {
-      toast({
-        title: "Download failed",
-        description: "Please try again",
-        variant: "destructive",
-      });
+    const quoteElement = document.getElementById(`quote-card-${quote.id}`);
+    if (quoteElement) {
+      const success = await exportQuoteAsImage(quoteElement, `quote-${quote.id}`);
+      if (success) {
+        toast({
+          title: "Downloaded!",
+          description: "Quote image saved",
+        });
+      } else {
+        toast({
+          title: "Download failed",
+          description: "Please try again",
+          variant: "destructive",
+        });
+      }
     }
+  };
+
+  const handleBookmarkToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleBookmark(quote.id);
+    
+    toast({
+      title: bookmarked ? "Removed from bookmarks" : "Added to bookmarks",
+      description: bookmarked ? "Quote removed from your saved items" : "Quote saved to your bookmarks",
+    });
   };
 
   return (
@@ -67,6 +84,17 @@ const QuoteCard: React.FC<QuoteCardProps> = ({ quote }) => {
         </div>
         
         <div className="flex gap-2 ml-2">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={handleBookmarkToggle}
+            title={bookmarked ? "Remove from bookmarks" : "Add to bookmarks"}
+            className={`rounded-full hover:bg-white/60 transition-all ${
+              bookmarked ? "text-amber-500" : "text-gray-700"
+            }`}
+          >
+            <BookmarkIcon size={18} className={bookmarked ? "fill-current" : ""} />
+          </Button>
           <Button 
             variant="ghost" 
             size="icon" 
