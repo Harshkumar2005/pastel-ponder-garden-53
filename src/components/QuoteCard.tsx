@@ -67,10 +67,22 @@ const QuoteCard: React.FC<QuoteCardProps> = ({ quote }) => {
         </div>
         
         <div className="flex gap-2 ml-2">
-          <Button variant="ghost" size="icon" onClick={handleCopy} title="Copy to clipboard">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={handleCopy} 
+            title="Copy to clipboard"
+            className="rounded-full hover:bg-white/60"
+          >
             <Copy size={18} />
           </Button>
-          <Button variant="ghost" size="icon" onClick={handleDownload} title="Download as image">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={handleDownload} 
+            title="Download as image"
+            className="rounded-full hover:bg-white/60"
+          >
             <Download size={18} />
           </Button>
         </div>
