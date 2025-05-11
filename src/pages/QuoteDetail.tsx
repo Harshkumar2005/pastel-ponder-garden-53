@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Copy, Download } from "lucide-react";
@@ -9,11 +8,16 @@ import { useToast } from "@/hooks/use-toast";
 import QuoteDesignSelector from "@/components/QuoteDesignSelector";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Badge } from "@/components/ui/badge";
-
 const QuoteDetail = () => {
-  const { id } = useParams<{ id: string; }>();
+  const {
+    id
+  } = useParams<{
+    id: string;
+  }>();
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const isMobile = useIsMobile();
   const quoteBoxRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +41,6 @@ const QuoteDetail = () => {
         </div>
       </div>;
   }
-  
   const handleCopy = async () => {
     const success = await copyToClipboard(quote.text);
     if (success) {
@@ -47,7 +50,6 @@ const QuoteDetail = () => {
       });
     }
   };
-  
   const handleDownload = async () => {
     if (quoteBoxRef.current) {
       const success = await exportQuoteAsImage(quoteBoxRef.current, `quote-${quote.id}`);
@@ -78,7 +80,7 @@ const QuoteDetail = () => {
               </blockquote>
             </div>
             
-            <div className="w-full flex flex-wrap items-center justify-center md:justify-start gap-3 mt-6">
+            <div className="w-full flex flex-wrap items-center justify-center gap-3 mt-6">
               <Button variant="ghost" size="sm" onClick={handleCopy} className="border-0 bg-stone-100 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
                 <Copy className="mr-2 h-4 w-4" /> Copy
               </Button>
@@ -87,11 +89,9 @@ const QuoteDetail = () => {
               </Button>
               
               {/* Tags moved here - next to buttons */}
-              {quote?.tags.map((tag, index) => (
-                <span key={index} className="bg-stone-100 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
+              {quote?.tags.map((tag, index) => <span key={index} className="bg-stone-100 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
                   #{tag}
-                </span>
-              ))}
+                </span>)}
             </div>
           </div>
           
@@ -110,5 +110,4 @@ const QuoteDetail = () => {
       </main>
     </div>;
 };
-
 export default QuoteDetail;
