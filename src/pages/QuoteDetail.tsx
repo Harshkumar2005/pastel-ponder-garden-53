@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Copy, Download, Heart } from "lucide-react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Copy, Download, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { quotes } from "@/data/quotes";
 import { copyToClipboard, exportQuoteAsImage } from "@/utils/exportImage";
@@ -14,6 +14,7 @@ const QuoteDetail = () => {
   const { toast } = useToast();
   const isMobile = useIsMobile();
   
+  // Set minimal design as the default
   const [currentDesign, setCurrentDesign] = useState<string>("minimal");
 
   // Find the quote by id
@@ -29,7 +30,7 @@ const QuoteDetail = () => {
             We couldn't find the quote you're looking for.
           </p>
           <Button onClick={() => navigate("/")}>
-            <ArrowLeft className="mr-2 h-4 w-4" /> Go back to all quotes
+            Go back to all quotes
           </Button>
         </div>
       </div>
@@ -207,22 +208,13 @@ const QuoteDetail = () => {
     </div>
   );
 
-  // Minimal Design
+  // Minimal Design - Updated
   const renderMinimalDesign = () => (
     <div className={`min-h-screen ${quote?.colorClass}`}>
       <QuoteDesignSelector 
         currentDesign={currentDesign}
         onDesignChange={setCurrentDesign}
       />
-      
-      <div className="fixed top-6 left-6">
-        <Link
-          to="/"
-          className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-        >
-          <ArrowLeft className="h-5 w-5 text-gray-700" />
-        </Link>
-      </div>
       
       <main id="quote-detail-minimal" className="container max-w-3xl mx-auto px-4 py-24 flex flex-col items-center">
         <div className="w-full mb-16 text-center">
@@ -231,17 +223,27 @@ const QuoteDetail = () => {
           </blockquote>
           
           <div className="inline-flex gap-3 mt-6">
-            <Button variant="outline" size="sm" onClick={handleCopy} className="font-inter border-gray-300 bg-white/50 backdrop-blur-sm">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={handleCopy} 
+              className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700 border-0 hover:bg-white/50"
+            >
               <Copy className="mr-2 h-4 w-4" /> Copy
             </Button>
-            <Button variant="outline" size="sm" onClick={handleDownload} className="font-inter border-gray-300 bg-white/50 backdrop-blur-sm">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={handleDownload} 
+              className="bg-white/30 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-inter text-gray-700 border-0 hover:bg-white/50"
+            >
               <Download className="mr-2 h-4 w-4" /> Download
             </Button>
           </div>
         </div>
         
         {quote?.explanation && (
-          <div className="w-full max-w-xl mx-auto border-t border-gray-100 pt-10">
+          <div className="w-full max-w-xl mx-auto border-t border-white/30 pt-10">
             <h2 className="font-inter text-sm uppercase tracking-wider text-gray-400 mb-4 text-center">
               About this quote
             </h2>
@@ -265,16 +267,8 @@ const QuoteDetail = () => {
     </div>
   );
 
-  // Render the selected design
-  switch(currentDesign) {
-    case "modern":
-      return renderModernDesign();
-    case "minimal":
-      return renderMinimalDesign();
-    case "classic":
-    default:
-      return renderClassicDesign();
-  }
+  // Always render the minimal design regardless of the currentDesign value
+  return renderMinimalDesign();
 };
 
 export default QuoteDetail;
