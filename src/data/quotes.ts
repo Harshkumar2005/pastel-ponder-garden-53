@@ -1,4 +1,11 @@
-/*
+/*export interface Quote {
+  id: number;
+  text: string;
+  tags: string[];
+  explanation?: string;
+  colorClass: string;
+}
+
 export const quotes: Quote[] = [
   {
     id: 1,
@@ -163,7 +170,7 @@ export const quotes: Quote[] = [
     id: 10,
     text: "Happiness depends upon ourselves.",
     tags: ["happiness"],
-    explanation: "This concise yet profound quote, attributed to Aristotle, places the responsibility for happiness squarely on the individual. It challenges the common external focus of seeking joy in possessions, relationships, achievements, or circumstances. While external factors can certainly influence our mood and well-being, this quote suggests that true, sustainable happiness is not contingent upon these fleeting elements. Instead, it is an internal state, cultivated through our own mindset, choices, and perspectives. This involves developing resilience, practicing gratitude, finding contentment in the present moment, pursuing activities that align with our values, and fostering positive relationships from a place of inner security. The quote implies that relying solely on external validation or circumstances for happiness makes us vulnerable to disappointment and instability, as these factors are often outside of our control. By shifting the focus inward, we empower ourselves to build a more stable foundation for well-being that can withstand external challenges. This perspective encourages self-awareness and personal responsibility for one's emotional state. It doesn't mean ignoring external problems, but rather developing the inner resources to navigate them without letting them completely derail our happiness. It's about recognizing that our reaction to circumstances is often more significant than the circumstances themselves. Cultivating practices like mindfulness, self-compassion, and developing a positive inner dialogue are all ways to actively work on this internal dependency. The quote is a timeless piece of philosophical wisdom that has resonated across centuries because it points to a fundamental truth about human experience: while we are interconnected with the world, our deepest sense of contentment and joy is ultimately an inside job, requiring conscious effort and cultivation from within ourselves, rather than passive reliance on external conditions or the actions of others. It's a call to agency in our own emotional landscape.",
+    explanation: "This concise yet profound quote, attributed to Aristotle, places the responsibility for happiness squarely on the individual. It challenges the common external focus of seeking joy in possessions, relationships, achievements, or circumstances. While external factors can certainly influence our mood and well-being, this quote suggests that true, sustainable happiness is not contingent upon these fleeting elements. Instead, it is an internal state, cultivated through our own mindset, choices, and perspectives. This involves developing resilience, practicing gratitude, finding contentment in the present moment, pursuing activities that align with our values, and fostering positive relationships from a place of inner security. The quote implies that relying solely on external validation or circumstances for happiness makes us vulnerable to disappointment and instability, as these factors are often outside of our control. By shifting the focus inward, we empower ourselves to build a more stable foundation for well-being that can withstand external challenges. This perspective encourages self-awareness and personal responsibility for one's emotional state. It doesn't mean ignoring external problems, but rather developing the inner resources to navigate them without letting them completely derail our happiness. It's about recognizing that our reaction to circumstances is often more significant than the circumstances themselves. Cultivating practices like mindfulness, self-compassation, and developing a positive inner dialogue are all ways to actively work on this internal dependency. The quote is a timeless piece of philosophical wisdom that has resonated across centuries because it points to a fundamental truth about human experience: while we are interconnected with the world, our deepest sense of contentment and joy is ultimately an inside job, requiring conscious effort and cultivation from within ourselves, rather than passive reliance on external conditions or the actions of others. It's a call to agency in our own emotional landscape.",
     colorClass: "bg-pastel-lavender"
   },
   {
@@ -182,30 +189,121 @@ export const quotes: Quote[] = [
   },
   {
     id: 13,
-    text: "The future belongs to those who believe in the beauty of their dreams.",
-    tags: ["dreams"],
-    explanation: "This poetic and inspiring quote, often attributed to Eleanor Roosevelt, connects the realization of future aspirations to the power of belief in the inherent worth and beauty of one's dreams. It suggests that merely having dreams is not enough; the crucial element is the unwavering faith and conviction in their potential, even when they may seem distant, challenging, or unconventional to others. The quote emphasizes that the 'future belongs' not to the most talented or the luckiest, but to those whose belief in their vision is strong enough to fuel their efforts, overcome obstacles, and maintain hope through periods of doubt or difficulty. The 'beauty' of dreams refers not just to their aesthetic appeal, but to the value, meaning, and positive impact they hold, both for the individual and potentially for the world. Believing in this beauty provides the intrinsic motivation and resilience needed to pursue them relentlessly. This perspective encourages individuals to cherish their unique visions and to trust their inner knowing, even when faced with skepticism or external pressures to conform. It implies that dreams, when held with deep conviction, possess a transformative power that can shape not only the individual's future but also contribute to a more vibrant and inspired collective future. It's a call to nurture one's inner world, to protect one's dreams from cynicism, and to understand that the journey towards realizing them is as much about cultivating inner strength and belief as it is about external action. This quote serves as a powerful reminder that the most extraordinary achievements often begin with a simple, deeply held belief in the possibility and beauty of a dream, inspiring individuals to hold onto their visions and work towards making them a reality against all odds.",
+    text: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+    tags: ["courage"],
+    explanation: "This quote by Nelson Mandela highlights that true strength is not in avoiding failure, but in the ability to bounce back from it. Life inevitably brings setbacks. What defines us is our resilience – our capacity to learn from mistakes, adapt, and persevere. This perspective transforms failure from a sign of defeat into a testament to character and determination. It empowers us to pursue goals with courage, knowing that falling is part of the process, but rising is the measure of our spirit. It's a call to embrace the journey of overcoming challenges.",
     colorClass: "bg-pastel-blue"
   },
   {
     id: 14,
-    text: "The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.",
-    tags: ["intangibles"],
-    explanation: "This profound quote, often attributed to Helen Keller, highlights the supreme value of intangible experiences and qualities over material possessions or superficial appearances. It suggests that the deepest sources of joy, meaning, and beauty in life are not those that can be perceived through the physical senses alone, but rather those that resonate on an emotional and spiritual level. The quote points to concepts like love, kindness, compassion, courage, hope, peace, and genuine connection as examples of these 'best and most beautiful things.' These are qualities and experiences that are felt internally, within the 'heart,' which symbolizes our emotional and intuitive center. Unlike physical objects that can be seen and touched, the true essence and impact of these intangibles are experienced through empathy, emotional resonance, and inner understanding. This perspective encourages a shift in focus from the material world to the inner world, urging individuals to prioritize cultivating inner virtues and fostering meaningful emotional connections. It implies that a life solely focused on accumulating possessions or seeking external validation will ultimately lack the depth and richness that comes from experiencing and valuing these unseen qualities. The quote is a timeless reminder that true wealth and fulfillment lie in the quality of our relationships, the depth of our emotional experiences, and the strength of our inner character, rather than in our external circumstances. It encourages us to open our hearts, to feel deeply, and to recognize the profound beauty and value in the non-material aspects of existence. This philosophy is particularly relevant in an increasingly materialistic world, serving as an important reminder that the most precious elements of life are those that nourish the soul and connect us on a deeper, more meaningful level, fostering a sense of wonder and appreciation for the unseen dimensions of human experience and the world around us in our daily lives and interactions with others.",
-    colorClass: "bg-pastel-yellow"
+    text: "Simplicity is the ultimate sophistication.",
+    tags: ["simplicity"],
+    explanation: "Attributed to Leonardo da Vinci, this quote suggests that true elegance lies in clarity and essentiality, not complexity. Mastering a subject or craft allows one to distill it to its simplest, most powerful form. This applies to design, communication, and problem-solving. Eliminating clutter reveals the core beauty and function. Pursuing simplicity requires discipline but results in timeless and impactful creations, proving that less is often more in achieving true refinement and mastery in any field.",
+    colorClass: "bg-pastel-mint"
   },
   {
     id: 15,
-    text: "It is during our darkest moments that we must focus to see the light.",
-    tags: ["hope"],
-    explanation: "This powerful quote, attributed to Aristotle Onassis, speaks to the critical importance of maintaining focus and seeking positivity during times of intense difficulty or despair, symbolized by 'darkest moments.' It suggests that it is precisely when we are facing our greatest challenges, experiencing loss, or feeling overwhelmed by negativity that the conscious effort to find 'the light' becomes most crucial. The 'light' here represents hope, possibility, solutions, inner strength, or the positive aspects that might still exist or be cultivated even within challenging circumstances. The quote implies that in darkness, it is easy to become consumed by despair and lose sight of any potential way forward. However, by deliberately shifting our focus, by actively looking for glimmers of hope or potential solutions, we can prevent ourselves from being completely engulfed by the negativity. This requires conscious effort and resilience, as our natural inclination in difficult times might be to focus on the problems. The quote encourages a proactive mindset, urging us to resist the pull of despair and instead direct our mental energy towards finding a way through or identifying the positive aspects that can provide solace or strength. It suggests that even in the bleakest situations, some form of 'light' or positive element can often be found if we are willing to look for it. This perspective fosters resilience and empowers individuals to navigate adversity with a greater sense of agency. It reminds us that while we may not be able to control the external circumstances of our 'darkest moments,' we can often control our internal response and where we choose to place our focus, which can make a significant difference in our ability to endure, learn, and ultimately find our way back to a place of greater well-being and possibility in the face of overwhelming challenges and the inherent difficulties that life sometimes presents to us on our journey towards growth and overcoming obstacles in our path forward towards a brighter future.",
-    colorClass: "bg-pastel-pink"
+    text: "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+    tags: ["wisdom"],
+    explanation: "Gandhi's quote urges a balanced approach to life. 'Live as if you were to die tomorrow' inspires urgency and mindfulness in the present, focusing on what truly matters. 'Learn as if you were to live forever' encourages a lifelong commitment to acquiring knowledge and wisdom. Together, they promote living fully in the now while embracing continuous growth and learning, blending the appreciation of limited time with the boundless potential of the human mind and spirit in the pursuit of knowledge.",
+    colorClass: "bg-pastel-peach"
   },
   {
     id: 16,
+    text: "When you talk, you are only repeating what you already know. But if you listen, you may learn something new.",
+    tags: ["empathy"],
+    explanation: "This quote by the Dalai Lama emphasizes the power of listening. Talking reinforces existing knowledge, but listening opens us to new perspectives and information from others. It requires humility and genuine curiosity. Prioritizing listening enhances understanding, builds connections, and is essential for personal and intellectual growth. True wisdom comes from being receptive to learning beyond our current understanding, making listening a fundamental skill for expanding our horizons and connecting with others on a deeper level.",
+    colorClass: "bg-pastel-blue"
+  },
+  {
+    id: 17,
+    text: "The difference between ordinary and extraordinary is that little extra.",
+    tags: ["persistence"],
+    explanation: "This quote highlights that remarkable results often stem from consistent, slightly greater effort. Going 'that little extra' beyond the standard, whether in attention to detail or dedication, compounds over time to create significant differences. It encourages a mindset of continuous improvement and exceeding expectations, suggesting that extraordinary achievement is attainable through persistent, focused effort rather than just inherent talent or luck, making diligence key to standing out.",
+    colorClass: "bg-pastel-mint"
+  },
+  {
+    id: 18,
+    text: "The only person you are destined to become is the person you decide to be.",
+    tags: ["self-improvement"],
+    explanation: "Ralph Waldo Emerson's quote stresses personal agency in shaping one's future. It rejects fixed destiny, asserting that who we become is determined by our present choices, actions, and beliefs. This empowers individuals to take ownership of their growth, define their values, and actively work towards their envisioned self. It's a reminder that personal transformation is a continuous, intentional process driven by self-determination and the power of deciding who you want to be in life.",
+    colorClass: "bg-pastel-yellow"
+  },
+  {
+    id: 19,
+    text: "No act of kindness, no matter how small, is ever wasted.",
+    tags: ["kindness"],
+    explanation: "This quote, often attributed to Aesop, emphasizes the enduring value of kindness regardless of its scale. Even small gestures like a smile or a kind word can have significant positive impacts, brightening someone's day or inspiring hope. Kindness creates ripple effects, fostering a more compassionate world. Its value lies in the genuine intention, benefiting both the giver and receiver, and reminding us that every act of compassion contributes positively to the human experience and connection.",
+    colorClass: "bg-pastel-pink"
+  },
+  {
+    id: 20,
+    text: "The journey of a thousand miles begins with a single step.",
+    tags: ["beginnings"],
+    explanation: "This ancient Chinese proverb highlights that even the most daunting or ambitious endeavors start with a simple, initial action. It encourages overcoming inertia and the feeling of being overwhelmed by focusing on taking the first step. This perspective makes large goals seem achievable by breaking them down into manageable beginnings, emphasizing that progress is initiated by daring to start, no matter how small the initial effort may seem in the context of the entire journey ahead towards achieving your ultimate goal.",
+    colorClass: "bg-pastel-lavender"
+  },
+  {
+    id: 21,
+    text: "Believe you can and you're halfway there.",
+    tags: ["belief"],
+    explanation: "This quote by Theodore Roosevelt emphasizes the power of self-belief. Believing in your ability to achieve a goal is a crucial first step, significantly increasing your chances of success. It highlights that mindset is a powerful determinant of outcome, suggesting that confidence and a positive attitude are foundational elements necessary to embark on the path toward realizing your aspirations and overcoming challenges encountered along the way to achieving your desired outcome through sheer determination and unwavering faith in your own capabilities.",
+    colorClass: "bg-pastel-peach"
+  },
+  {
+    id: 22,
+    text: "The future belongs to those who believe in the beauty of their dreams.",
+    tags: ["dreams"],
+    explanation: "Eleanor Roosevelt's quote suggests that realizing future aspirations depends on believing in the value and beauty of one's dreams. Unwavering faith in your vision fuels effort, overcomes obstacles, and sustains hope. Cherish your unique dreams and trust your inner knowing, even when facing skepticism, as this inner conviction is key to shaping not only your future but also contributing positively to the world.",
+    colorClass: "bg-pastel-mint"
+  },
+  {
+    id: 23,
+    text: "The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.",
+    tags: ["intangibles"],
+    explanation: "Helen Keller's quote highlights the value of intangible experiences like love, kindness, and hope over material things. True joy comes from emotional and spiritual connection, felt with the 'heart.' Prioritizing inner virtues and meaningful relationships provides deeper fulfillment than accumulating possessions. It's a reminder to cherish the unseen qualities that enrich life, fostering empathy and connection with others and the world.",
+    colorClass: "bg-pastel-blue"
+  },
+  {
+    id: 24,
+    text: "It is during our darkest moments that we must focus to see the light.",
+    tags: ["hope"],
+    explanation: "Attributed to Aristotle Onassis, this quote stresses the importance of seeking positivity during difficult times. In despair, focusing on 'the light' – hope, solutions, inner strength – is crucial. This conscious effort prevents being consumed by negativity, fostering resilience and enabling navigation of challenges. It reminds us that even in bleak situations, a positive focus helps find a way forward and maintain well-being.",
+    colorClass: "bg-pastel-yellow"
+  },
+  {
+    id: 25,
     text: "Whoever is happy will make others happy too.",
     tags: ["positivity"],
-    explanation: "This simple yet profound quote, attributed to Mark Twain, speaks to the contagious nature of happiness and the ripple effect that an individual's positive state of being can have on those around them. It suggests that happiness is not merely a personal experience but also a force that can radiate outwards, influencing the emotional landscape of a community. When a person is genuinely happy, their positive energy, optimism, and joyful demeanor tend to be infectious. They are more likely to interact with others in a positive way, offer kindness and support, and approach challenges with a constructive attitude, all of which can uplift the spirits of those they encounter. The quote implies that cultivating one's own happiness is not a selfish pursuit but a generous act that benefits others. By focusing on our own well-being and finding joy in our lives, we contribute to a more positive environment for everyone around us. This perspective encourages individuals to prioritize their own happiness not only for personal fulfillment but also for the positive impact they can have on the world. It highlights the interconnectedness of human emotions and suggests that by being a source of light and positivity, we can inspire similar feelings in others. This is a powerful message about the influence of individual disposition on collective well-being. It reminds us that even small acts of joy and optimism can have a far-reaching impact, creating a more positive and supportive atmosphere in our homes, workplaces, and communities. The quote serves as a beautiful reminder that spreading happiness begins with cultivating it within ourselves, making our own well-being a foundation.",
+    explanation: "Mark Twain's quote illustrates the contagious nature of happiness. A happy person's positive energy radiates, influencing those around them through joyful demeanor and kind interactions. Cultivating personal happiness is a generous act that benefits others, contributing to a more positive community and highlighting the interconnectedness of emotions and the power of individual disposition to spread joy.",
     colorClass: "bg-pastel-pink"
+  },
+  {
+    id: 26,
+    text: "The only impossible journey is the one you never begin.",
+    tags: ["action"],
+    explanation: "This quote emphasizes that the greatest barrier to achieving any goal is inaction. Regardless of how difficult a journey may seem, it only becomes truly impossible if you never take the first step. It's a powerful call to overcome fear and procrastination, encouraging individuals to start pursuing their dreams, as the act of beginning is the essential prerequisite for any possibility of reaching the desired destination and realizing your full potential in life.",
+    colorClass: "bg-pastel-lavender"
+  },
+  {
+    id: 27,
+    text: "The best preparation for tomorrow is doing your best today.",
+    tags: ["preparation"],
+    explanation: "This quote highlights that future success and readiness are built through diligent effort in the present. Focusing on doing your best today, mastering current tasks, and learning from present experiences provides the most solid foundation for whatever tomorrow may bring. It's about consistent effort and dedication in the now, rather than worrying about the future, recognizing that excellence today is the most effective way to prepare for the opportunities and challenges of tomorrow and lay the groundwork for future achievements and growth.",
+    colorClass: "bg-pastel-peach"
+  },
+  {
+    id: 28,
+    text: "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+    tags: ["inner-strength"],
+    explanation: "This quote by Ralph Waldo Emerson emphasizes the power of our inner character and potential over past experiences or future uncertainties. Our past may have challenges, and the future is unknown, but our inner strength, resilience, and capabilities are the most significant factors. It encourages focusing on cultivating inner resources, suggesting that our internal state is more influential in shaping our lives than external circumstances, empowering us to face challenges with confidence and draw upon our inner reserves.",
+    colorClass: "bg-pastel-mint"
+  },
+  {
+    id: 29,
+    text: "We must let go of the life we have planned, so as to accept the one that is waiting for us.",
+    tags: ["acceptance"],
+    explanation: "This quote, attributed to Joseph Campbell, speaks to the necessity of flexibility and acceptance in navigating life's unpredictable path. Holding too rigidly to planned outcomes can prevent us from embracing unexpected opportunities or adapting to unforeseen circumstances. Releasing our fixed expectations allows us to be open to the life that is actually unfolding, which may be different from our plan but ultimately more fulfilling.",
+    colorClass: "bg-pastel-mint"
   }
 ]
