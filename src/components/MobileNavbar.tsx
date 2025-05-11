@@ -36,9 +36,9 @@ const MobileNavbar: React.FC = () => {
           )}
         >
           {/*<span className="text-xl mr-1.5">🌸</span>*/}
-          <Notebook className="mr-1.5" />
+          <Notebook size={20} className="mr-1.5" />
           
-          <span className="text-m font-medium">Home</span>
+          <span className="text-m font-medium font-playfair">Home</span>
         </Link>
         
         <motion.button 
@@ -56,9 +56,9 @@ const MobileNavbar: React.FC = () => {
               : "text-gray-400 grayscale opacity-70"
           )}
         >
-          <Dices className="mr-1.5" />
+          <Dices size={20} className="mr-1.5" />
           
-          <span className="text-m font-medium">Random</span>
+          <span className="text-m font-medium font-playfair">Random</span>
         </motion.button>
         
         <Link 
@@ -70,9 +70,9 @@ const MobileNavbar: React.FC = () => {
               : "text-gray-400 grayscale opacity-70"
           )}
         >
-          <Bookmark className="mr-1.5" />
+          <Bookmark size={20} className="mr-1.5" />
           
-          <span className="text-m font-medium">Saved</span>
+          <span className="text-m font-medium font-playfair">Saved</span>
         </Link>
       </div>
     </nav>
