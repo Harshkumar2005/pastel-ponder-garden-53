@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +7,9 @@ import Index from "./pages/Index";
 import QuoteDetail from "./pages/QuoteDetail";
 import NotFound from "./pages/NotFound";
 import BookmarkedQuotes from "./pages/BookmarkedQuotes";
+import MobileNavbar from "@/components/MobileNavbar";
+// Import the useIsMobile hook if you still need to conditionally render it based on screen size
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,7 @@ const App = () => (
           <Route path="/bookmarks" element={<BookmarkedQuotes />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        {isMobile && <MobileNavbar />}
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
