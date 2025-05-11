@@ -72,7 +72,7 @@ const QuoteDetail = () => {
   return <div className="min-h-screen bg-gray-50">
       <QuoteDesignSelector currentDesign={currentDesign} onDesignChange={setCurrentDesign} />
       
-      <main className="container max-w-3xl mx-auto px-4 py-24 flex flex-col items-center">
+      <main className="container max-w-3xl mx-auto px-4 py-8 md:py-24 flex flex-col items-center">
         <div id="quote-box" ref={quoteBoxRef} className={`w-full max-w-lg aspect-square flex flex-col items-center justify-center p-12 ${quote.colorClass} rounded-lg shadow-sm`}>
           <blockquote className="font-playfair text-3xl md:text-4xl lg:text-5xl font-light mb-8 leading-relaxed tracking-wide text-center">
             {quote?.text}
