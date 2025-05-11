@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Copy, Download, Heart } from "lucide-react";
@@ -8,11 +7,16 @@ import { copyToClipboard, exportQuoteAsImage } from "@/utils/exportImage";
 import { useToast } from "@/hooks/use-toast";
 import QuoteDesignSelector from "@/components/QuoteDesignSelector";
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const QuoteDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  const {
+    id
+  } = useParams<{
+    id: string;
+  }>();
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const isMobile = useIsMobile();
 
   // Set minimal design as the default
@@ -35,7 +39,6 @@ const QuoteDetail = () => {
         </div>
       </div>;
   }
-
   const handleCopy = async () => {
     const success = await copyToClipboard(quote.text);
     if (success) {
@@ -45,7 +48,6 @@ const QuoteDetail = () => {
       });
     }
   };
-
   const handleDownload = async () => {
     const success = await exportQuoteAsImage(`quote-detail-${currentDesign}`, `quote-${quote.id}`);
     if (success) {
@@ -60,8 +62,7 @@ const QuoteDetail = () => {
   const colorName = quote.colorClass.replace('bg-', '');
 
   // Minimal Design - Default
-  return (
-    <div className="min-h-screen bg-gray-50">
+  return <div className="min-h-screen bg-gray-50">
       <QuoteDesignSelector currentDesign={currentDesign} onDesignChange={setCurrentDesign} />
       
       <main id="quote-detail-minimal" className="container max-w-3xl mx-auto px-4 py-24 flex flex-col items-center">
@@ -71,7 +72,7 @@ const QuoteDetail = () => {
           </blockquote>
           
           <div className="inline-flex gap-3 mt-6">
-            <Button variant="ghost" size="sm" onClick={handleCopy} className="bg-[#d3d3d373] border-0 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
+            <Button variant="ghost" size="sm" onClick={handleCopy} className="bg-[#d3d3d373] border-0 bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
               <Copy className="mr-2 h-4 w-4" /> Copy
             </Button>
             <Button variant="ghost" size="sm" onClick={handleDownload} className="bg-[#d3d3d373] border-0 hover:bg-opacity-70 px-4 py-1.5 rounded-full text-sm font-inter text-gray-700">
@@ -95,8 +96,6 @@ const QuoteDetail = () => {
             </span>)}
         </div>
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default QuoteDetail;
