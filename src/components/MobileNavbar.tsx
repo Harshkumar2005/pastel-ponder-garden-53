@@ -44,10 +44,10 @@ const MobileNavbar: React.FC = () => {
         <motion.button 
           onClick={goToRandomQuote} 
           whileTap={{
-            scale: 0.95
+            scale: 0.85
           }} 
           whileHover={{
-            scale: 1.03
+            scale: 1.09
           }} 
           className={cn(
             "flex flex-row items-center justify-center px-3 py-1 rounded-lg transition-all gap-1.5 relative",
